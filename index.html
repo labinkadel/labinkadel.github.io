@@ -1,0 +1,84 @@
+<html>
+<head>
+<style>
+.myDiv {
+  
+ 
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div id="loading">
+loading....
+</div>
+
+
+
+
+<div class="myDiv" id="mainContainer" hidden>
+<img 
+       height="100"  
+           width="100"
+                 id="profileImage" 
+>
+
+
+ <h2 id="fullName">  </h2>
+
+<p id="bio"> </p>
+
+<h5 id="followersInformation"> </h5>
+
+<p> 
+
+    Check me on <a id="githublink">Github</a>
+
+  </p>
+
+
+</div>
+
+
+<script>
+
+	fetch("https://api.github.com/users/labinkadel")
+	.then(response => response.json())
+	.then(function(data) {
+         console.log(data)  
+
+         let followerCount = data['followers']
+         let followersInfo = `I have been followed by ${followerCount} awesome People on Github` 
+
+
+         document.getElementById('profileImage').src = data['avatar_url']
+          document.getElementById('fullName').textContent = data['name']
+           document.getElementById('bio').textContent = data['bio']
+          
+           document.getElementById('followersInformation').textContent = followersInfo
+
+           document.getElementById('githublink').href =data['html_url'] 
+
+           document.getElementById('mainContainer').hidden = false
+
+          document.getElementById('loading').hidden= true
+       
+          "https://github.com/labinkadel"
+
+
+
+	})
+
+
+
+
+
+
+
+
+
+ </script>
+
+</body>
+</html>
